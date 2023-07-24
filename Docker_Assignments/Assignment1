@@ -12,7 +12,7 @@ docker logs reverent_fermi
 #Go inside container
 docker exec -it reverent_fermi sh 
 OR 
-docker attch reverent_fermi
+docker attach reverent_fermi
 
 #Stop the container 
 docker stop reverent_fermi
