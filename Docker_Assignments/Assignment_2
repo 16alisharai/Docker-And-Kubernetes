@@ -1,19 +1,1 @@
-#Try to create a docker image out of it with the base image of `golang:latest`
-docker build -t go_app_image .
- 
-#Run a container with that image and do a curl request and make sure you are able to see the output.
-docker run -d -p 8080:8080 --name go_app_container go_app_image:v1
-curl http://localhost:8080/
-`output` - hello
 
-#Tag the docker image with v1. 
-docker tag go_app_image:v1 16alisharai/go_app_image:v1 
-
-
-#Run docker history, observe and understand the output.
-docker history go_app_image:v1
-
-
-#Push the docker image to your docker hub.
-docker login
-docker push 16alisharai/go_app_image:v1
