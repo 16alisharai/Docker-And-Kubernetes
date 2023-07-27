@@ -1,0 +1,50 @@
+#create volume
+  docker volume create my-volume
+  
+#creating a container and attaching my-volume to it
+  docker run -it -d -P -v my-volume:/usr/share/nginx/html --name my-container nginx:latest /bin/bash
+
+#modifying the file inside volume in my-container
+  docker exec -it my-container /bin/bash
+  cd /usr/share/nginx/html
+  echo  "hello! I just created new docker volume!!!!" >> index.html 
+
+#creating a new container with same volume "my-volume"
+  docker run -it -d -P -v my-volume:/usr/share/nginx/html --name my-copy-container nginx:latest /bin/bash
+
+#checking the o/p
+  docker exec -it my-copy-container /bin/bash
+  cd /usr/share/nginx/html
+  cat index.html
+
+OR
+
+  curl http://localhost:32773/ 
+
+#o/p
+
+  <!DOCTYPE html>
+  <html>
+  <head>
+  <title>Welcome to nginx!</title>
+  <style>
+  html { color-scheme: light dark; }
+  body { width: 35em; margin: 0 auto;
+  font-family: Tahoma, Verdana, Arial, sans-serif; }
+  </style>
+  </head>
+  <body>
+  <h1>Welcome to nginx!</h1>
+  <p>If you see this page, the nginx web server is successfully installed and
+  working. Further configuration is required.</p>
+
+  <p>For online documentation and support please refer to
+  <a href="http://nginx.org/">nginx.org</a>.<br/>
+  Commercial support is available at
+  <a href="http://nginx.com/">nginx.com</a>.</p>
+
+  <p><em>Thank you for using nginx.</em></p>
+  </body>
+  </html>
+  hello! I just created new docker volume
+  
