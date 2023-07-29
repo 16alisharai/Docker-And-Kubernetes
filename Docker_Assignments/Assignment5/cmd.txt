@@ -1,1 +1,8 @@
+#run redis container and note the ip address
+
+docker pull redis
+docker run -it --name redis-container -d redis:latest
+docker inspect redis-container
+ "IPAddress": "172.17.0.3"
+
 
