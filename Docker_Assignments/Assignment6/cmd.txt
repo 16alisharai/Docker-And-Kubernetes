@@ -3,3 +3,7 @@ docker network create my_network
 
 #run redis container and connect to my_network
 docker run -it --name redis-container --network my_network -d redis:latest 
+
+
+
+
