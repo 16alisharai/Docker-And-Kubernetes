@@ -1,1 +1,5 @@
-
+docker-compose build
+docker images
+docker-compose up -d
+docker-compose ps
+docker-compose down
