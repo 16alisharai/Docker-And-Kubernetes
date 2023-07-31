@@ -11,6 +11,11 @@ git pull origin redis
 
 
 #Build new image for go-app
-docker build -t go-image .
+docker build -t go-app-redis .
+
+#start go app container with redis ip as redis host env
+docker run -d -e REDIS_HOST=172.7.0.6 --name go-app-redis-container go-app-redis:latest
+
+#make sure go app work by /vote endpoint
 
 
