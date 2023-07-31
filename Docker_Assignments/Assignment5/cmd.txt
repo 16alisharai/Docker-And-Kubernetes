@@ -5,4 +5,12 @@ docker run -it --name redis-container -d redis:latest
 docker inspect redis-container
  "IPAddress": "172.17.0.3"
 
+#Pull code from branch redis in go app
+git checkout redis
+git pull origin redis
+
+
+#Build new image for go-app
+docker build -t go-image .
+
 
