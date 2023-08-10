@@ -1,1 +1,41 @@
+Q1. Create a Pod specification for the metadataservice
+image : luckyganesh/metadata-service:v1 ( for M1 chip - luckyganesh/metadata-service:v1-arm )
+Port to be exposed 8080
 
+Solu.  
+Step-1 vi pod.yaml
+
+apiVersion: v1
+ikind: Pod
+metadata:
+  name: metadata-service
+spec:
+  containers:
+  - name: metadata-service
+    image: luckyganesh/metadata-service:v1-arm
+    ports:
+    - containerPort: 8080
+
+Step-2 kubectl create -f pod.yaml
+
+Q2. Check the logs
+
+kubectl logs metadata-service
+
+Q3. Check the Pod IP
+
+kubectl get pods -o wide
+
+o/p- 
+NAME               READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+metadata-service   1/1     Running   0          10s   10.244.0.11   minikube   <none>           <none>
+
+Q4. Hit the POD ip with /metadata url path from either insider minikube ( minikube ssh ) or colima ( colima ssh ) based on whatever you are using 
+minikube ssh
+curl 10.244.0.11
+
+Q5. Describe the POD
+kubectl describe pod metadata-service
+
+Q6. Exec into the container using /bin/sh command
+kubectl exec -it metadata-service /bin/bash
