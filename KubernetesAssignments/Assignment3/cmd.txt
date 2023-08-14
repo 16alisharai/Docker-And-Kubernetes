@@ -57,6 +57,7 @@ spec:
     - port: 80
       targetPort: 8080
       nodePort: 30007
+
 -> kubectl apply -f service.yaml
 
 -> kubectl get svc
