@@ -65,4 +65,9 @@ NAME               TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
 kubernetes         ClusterIP   10.96.0.1      <none>        443/TCP        4d19h
 metadata-service   NodePort    10.108.126.9   <none>        80:30007/TCP   30s
 
+Step-4 : minikube ip
+-> minikube ip
+o/p 192.168.49.2
 
+Step-5 : accessing through nodeport
+->curl http://192.168.49.2:30007
