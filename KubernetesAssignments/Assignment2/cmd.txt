@@ -1,8 +1,9 @@
+
 #Create ReplicaSet for metadata-service and deploy in k8s cluster
 #Add LivenessProbe and ReadinessProbe as /actuator/health
 
 Solu-
-->vim replicaset.yaml
+~vim replicaset.yaml
 
 apiVersion: apps/v1
 kind: ReplicaSet
@@ -39,4 +40,13 @@ spec:
           periodSeconds: 3
 
 
-->kubectl apply -f replicaset.yaml
+->applying changes to replicaset.yaml
+~kubectl apply -f replicaset.yaml
+
+->checking the created rs
+~ kubectl get rs -o wide
+
+NAME               DESIRED   CURRENT   READY   AGE     CONTAINERS         IMAGES                                SELECTOR
+metadata-service   2         2         2       7m58s   metadata-service   luckyganesh/metadata-service:v1-arm   app=metadata-service
+
+->
