@@ -1,1 +1,42 @@
-##
+#Create ReplicaSet for metadata-service and deploy in k8s cluster
+#Add LivenessProbe and ReadinessProbe as /actuator/health
+
+Solu-
+->vim replicaset.yaml
+
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: metadata-service
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: metadata-service
+  template:
+    metadata:
+      labels:
+        app: metadata-service
+
+    spec:
+      containers:
+      - name: metadata-service
+        image: luckyganesh/metadata-service:v1-arm
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+              port: 8080
+              path: /actuator/health
+          initialDelaySeconds: 10
+          periodSeconds: 5
+          
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 3
+
+
+->kubectl apply -f replicaset.yaml
