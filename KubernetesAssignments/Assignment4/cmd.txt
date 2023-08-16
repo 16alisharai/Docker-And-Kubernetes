@@ -1,1 +1,38 @@
+# deploy new pod using mongodb image
+
+vim mongopod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo
+  labels:
+    app: mongo-pod
+spec:
+  containers:
+  - name: mongo
+    image: mongo
+    ports:
+    - containerPort: 27017
+
+#create cluster ip service for mongodb
+
+vim mongoservice.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mongo
+spec:
+  selector:
+    app: mongo-pod
+  ports:
+    - protocol: TCP
+      port: 27017
+      targetPort: 27017
+
+#change image in metadata service and define env variable inside container spec
+
+
+
 
