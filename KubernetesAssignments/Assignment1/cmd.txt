@@ -32,7 +32,7 @@ metadata-service   1/1     Running   0          10s   10.244.0.11   minikube   <
 
 Q4. Hit the POD ip with /metadata url path from either insider minikube ( minikube ssh ) or colima ( colima ssh ) based on whatever you are using 
 minikube ssh
-curl 10.244.0.11
+curl http://10.42.0.6/metadata
 
 Q5. Describe the POD
 kubectl describe pod metadata-service
