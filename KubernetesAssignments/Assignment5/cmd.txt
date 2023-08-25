@@ -46,3 +46,11 @@ spec:
         ports:
         - containerPort: 27017
 
+#➜  ~ kubectl get deployments
+
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+metadata-service   2/2     2            2           4m55s
+mongo              2/2     2            2           32s
+ 
+
+
