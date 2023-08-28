@@ -1,1 +1,22 @@
+#Run mongo db with pv using hostpath
 
+pod.yml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: host-path
+spec:
+  containers:
+  - image: mongo
+    name: mongo
+    ports:
+        - containerPort: 27017
+    volumeMounts:
+    - mountPath: /data/db
+      name: host-volume
+  volumes:
+  - name: host-volume
+    hostPath:
+      path: /Desktop/pvc
+      type: Directory
