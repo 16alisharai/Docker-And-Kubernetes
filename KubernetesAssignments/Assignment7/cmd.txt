@@ -1,1 +1,56 @@
+#Run mongo db with pv and pvc using hostpath as pv
+
+#mongopv.yml
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: mongo-pv
+spec:
+  capacity:
+   storage: 1Gi
+  volumeMode: Filesystem
+  accessModes:
+   - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  hostPath:
+   path: /tmp
+
+
+#mongopvc.yml
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: mongo-pvc
+spec:
+  storageClassName: slow
+  accessModes:
+   - ReadWriteOnce
+  resources:
+   requests:
+    storage: 1Gi
+
+
+#mongopod.yml
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mongo-new-pod-with-pv
+spec:
+  containers:
+    - name: mongo
+      image: mongo
+      ports:
+        - containerPort: 27017
+      volumeMounts:
+        - name: public
+          mountPath: /data/db
+  volumes:
+    - name: public
+      persistentVolumeClaim:
+        claimName: mongo-pvc
 
